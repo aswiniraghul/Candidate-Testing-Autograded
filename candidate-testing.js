@@ -29,7 +29,6 @@ function askQuestion() {
 
   for (let i = 0; i < questions.length; i++) {
     candidateAnswers.push(input.question(questions[i]));
-    console.log(`For index ${i}, the answer is ${candidateAnswers}`);
   }
 }
 
@@ -42,6 +41,8 @@ function gradeQuiz(candidateAnswers) {
   //   console.log("Sorry, that is not the right answer");
   // }
 
+  let correctAnswersCount = 0;
+
   for (let i = 0; i < questions.length; i++){
     console.log(`For question ${i + 1}, you have answered ${candidateAnswers[i]} and the correct answer is ${correctAnswers[i]}`);
   }
@@ -49,6 +50,21 @@ function gradeQuiz(candidateAnswers) {
 
   let grade;  //TODO 3.2 use this variable to calculate the candidates score.
 
+  for (let i = 0; i < correctAnswers.length; i++) {
+    if (correctAnswers[i].toUpperCase() === candidateAnswers[i].toUpperCase()) {
+      correctAnswersCount ++;
+    }
+  }
+
+  grade = correctAnswersCount/questions.length * 100;
+
+  console.log(`Your grade is ${grade}`);
+
+  if (grade >= 80) {
+    console.log(`Congratulations! You have passed the quiz with ${grade}`);
+  } else {
+    console.log(`Sorry! You have failed the quiz`);
+  }
 
   return grade;
 }
